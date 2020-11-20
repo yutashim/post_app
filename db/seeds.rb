@@ -1,7 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+posts = "
+3000形SE車
+小田急3000形電車は、1957年から1992年まで小田急電鉄において運用された特急用車両（ロマンスカー）である。"
+posts = posts.scan(/.{1,7}/)
+posts.each do |p|
+  Post.create!(
+    content: "#{p}"
+  )
+end
