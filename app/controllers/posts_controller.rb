@@ -1,7 +1,4 @@
 class PostsController < ApplicationController
-  def top
-
-  end
   def index
     @posts = Post.all
   end
@@ -10,7 +7,11 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    if params.has_key?('post')
+      @post = Post.new(params.require(:post).permit(:content))
+    else
+      @post = Post.new
+    end
   end
 
   def create
@@ -22,11 +23,19 @@ class PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
   end
 
   def update
+    @post = Post.find(params[:id])
+    @post.update(params.require(:post).permit(:content))
+
+  end
+  def delete
   end
 
-  def delete
+  def confirm
+    @post = Post.new(params.require(:post).permit(:content))
+    render 'new' if @post.invalid?
   end
 end

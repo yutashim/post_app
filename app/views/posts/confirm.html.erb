@@ -1,0 +1,7 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <p>以下の内容で登録しても良いですか？</p>
+  <%= form.hidden_field :content %>
+  <%= @post.content %>
+  <%= form.submit%>
+  <%= link_to '戻る', new_post_path(params: {post: {content: @post.content}}), action: 'post' %>
+<% end %>

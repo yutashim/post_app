@@ -1,0 +1,5 @@
+<%= form_with(model: @post, local: true) do |form| %>
+  <p>新規投稿をします</p>
+  <%= form.text_area :content %>
+  <%= form.submit%>
+<% end %>
